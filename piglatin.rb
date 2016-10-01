@@ -25,7 +25,6 @@ def translate(sent)
       count = 0
       word.each_with_index do |char, index|
         if vowels.include? char
-          # handle words that start with 'qu'
           if char == 'u' and translation[-1] == 'q'
             qu = true
             translation = words[i][count + 1..words[i].length] + translation + 'uay'
@@ -34,7 +33,6 @@ def translate(sent)
           end
           break
         else
-          # handle words with 'qu' in middle
           if char == 'q' and word[i+1] == 'u'
             qu = true
             translation = words[i][count + 2..words[i].length] + 'quay'
@@ -46,7 +44,6 @@ def translate(sent)
           count += 1
         end
       end
-      # translation of consonant words without qu
       if not qu
         translation = words[i][count..words[i].length] + translation + 'ay'
         result.push(translation)
